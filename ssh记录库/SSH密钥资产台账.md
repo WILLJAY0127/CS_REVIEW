@@ -7,7 +7,7 @@
 - 本机私钥文件：id_rsa_vps_willjay
 - 公钥部署位置清单（丢机器要全部删除）：
   1. GitHub账号 → SSH Keys 标题：wintaikang
-  2. VPS服务器 123.45.67.89 用户root → authorized_keys
+  2. VPS服务器 123.45.67.89 用户vpswilljay → authorized_keys
 - 状态：在用
 
 ## 条目2：Linux学习机（id_rsa_linux_vps）
@@ -17,6 +17,7 @@
 - 公钥部署位置：
   1. GitHub账号 → SSH Keys 标题：Vps_Ubuntu
 - 状态：在用
+- 有点困
 
 ## 废弃记录（机器淘汰/重装）
 - 旧笔记本2024：已全部删除GitHub、云服务器公钥，作废日期2025-12
