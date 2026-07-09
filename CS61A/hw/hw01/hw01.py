@@ -42,6 +42,15 @@ def two_of_three(i, j, k):
     >>> two_of_three(5, 5, 5)
     50
     """
+    # 解法2：排序后取前两个求和
+    # return sum(x**2 for x in sorted([i,j,k])[:2])
+
+    # 解法3：用列表推导式
+    # return sum([x**2 for x in sorted([i,j,k])[:2]])
+
+    # 解法4：三元表达式（找出最大的排除）
+    # return (i**2 if i != max(i,j,k) else 0) + (j**2 if j != max(i,j,k) else 0) + (k**2 if k != max(i,j,k) else 0)
+        
     return i**2 + j**2 + k**2 - max(i,j,k)**2
 
 def two_of_three_syntax_check():
@@ -66,6 +75,20 @@ def largest_factor(n):
     1
     """
     "*** YOUR CODE HERE ***"
+
+    # i = n - 1
+    # while i > 0:
+    #     if n % i == 0:
+    #         return i
+    #     i -= 1
+    # return 1
+
+    # return next(i for i in range(n-1, 0, -1) if n % i == 0)
+
+    for i in range(n-1, 0, -1):
+        if n % i == 0:
+            return i
+    return 1
 
 
 def hailstone(n):
