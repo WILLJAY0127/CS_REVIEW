@@ -3,8 +3,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.ok_history/
-.ok_messages/
+.ok_history
+.ok_messages
 .ok_storage/
 .ok_save
 
