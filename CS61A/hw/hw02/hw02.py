@@ -1,4 +1,5 @@
 from operator import add, mul
+from re import X
 
 square = lambda x: x * x
 
@@ -32,6 +33,10 @@ def product(n, term):
     162
     """
     "*** YOUR CODE HERE ***"
+    product = 1
+    for i in range(1, n+1):
+        product *= term(i)
+    return product
 
 
 def accumulate(fuse, start, n, term):
@@ -55,6 +60,11 @@ def accumulate(fuse, start, n, term):
     """
     "*** YOUR CODE HERE ***"
 
+    result = start
+    for i in range(1, n+1):
+        result = fuse(result, term(i))
+    return result
+
 
 def summation_using_accumulate(n, term):
     """Returns the sum: term(1) + ... + term(n), using accumulate.
@@ -68,7 +78,7 @@ def summation_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(summation_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return accumulate(add, 0, n, term)
 
 
 def product_using_accumulate(n, term):
@@ -83,7 +93,7 @@ def product_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(product_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return accumulate(mul, 1, n, term)
 
 
 def make_repeater(f, n):
@@ -100,4 +110,11 @@ def make_repeater(f, n):
     390625
     """
     "*** YOUR CODE HERE ***"
+    def repeated(x):
+        result = x
+        for i in range(n):
+            result = f(result)
+        return result
+    return repeated
+
 
