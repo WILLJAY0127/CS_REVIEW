@@ -1,5 +1,37 @@
-.obsidian
+# ========== Python / CS61A ok工具 ==========
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ok_history
+.ok_messages
+.ok_storage
+.ok_save
+.ok_consent
+.ok_disabled
 
-# Claude.ai 原始机器格式导出(5.8MB,不可读,不进 git)
-# 可读版见 CS61A/claude对话/extracted/
-CS61A/claude对话/data-*/
+# ========== Obsidian ==========
+# 方案A：懒人一键全部屏蔽（当前推荐你启用）
+.obsidian/
+
+# 方案B：精细化管控（未来多设备同步再启用，注释上面一行）
+# .obsidian/cache/
+# .obsidian/workspace*.json
+# .obsidian/plugins/
+# .obsidian/trash/
+# .obsidian/backup/
+# .obsidian/graph.json
+
+# ========== 编辑器、系统文件 ==========
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ========== Python虚拟环境 ==========
+venv/
+env/
+
+
