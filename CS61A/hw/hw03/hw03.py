@@ -1,3 +1,6 @@
+from itertools import count
+
+
 HW_SOURCE_FILE = __file__
 
 
@@ -25,6 +28,12 @@ def num_eights(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n  == 0:
+        return 0
+    else:
+        return num_eights(n // 10) + (1 if n % 10 == 8 else 0)
+
+
 
 
 def digit_distance(n):
