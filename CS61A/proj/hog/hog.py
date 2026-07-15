@@ -160,6 +160,19 @@ def play(strategy0, strategy1, update,
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    while score0 < goal and score1 < goal:
+        if who == 0:
+            # 玩家0回合
+            rolls = strategy0(score0, score1)
+            score0 = update(rolls, score0, score1, dice)
+        else:
+            # 玩家1回合
+            rolls = strategy1(score1, score0)
+            score1 = update(rolls, score1, score0, dice)
+        # 切换玩家
+        # who = who ^ 1
+        # who = 1 if who == 0 else 0
+        who = 1 - who
     # END PROBLEM 5
     return score0, score1
 
