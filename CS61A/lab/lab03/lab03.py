@@ -51,7 +51,7 @@ def close_list(s, k):
     >>> close_list(t, 2)  # 2, 3, 4, and 5 are all within 2 of their index
     [2, 4, 3, 5]
     """
-    return [___ for i in range(len(s)) if ___]
+    return [i for i in range(len(s)) if abs(i - s[i]) <= k]
 
 
 from math import sqrt
@@ -67,7 +67,7 @@ def squares(s):
     >>> squares(seq)
     []
     """
-    return [___ for n in s if ___]
+    return [round(sqrt(n)) for n in s if sqrt(n) == round(sqrt(n))]
 
 
 def double_eights(n):
