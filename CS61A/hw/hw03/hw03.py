@@ -133,6 +133,17 @@ def count_dollars(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(n, bill):
+        if n == 0:
+            return 1
+        if n < 0 or bill is None:
+            return 0
+        # 分支1：选一张当前面额bill；分支2：彻底不用bill，换更小面额
+        take = helper(n - bill, bill)
+        not_take = helper(n, next_smaller_dollar(bill))
+        return take + not_take
+    # 初始：允许使用最大面额100
+    return helper(total, 100)
 
 
 def next_larger_dollar(bill):
