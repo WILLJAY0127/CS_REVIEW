@@ -13,6 +13,11 @@ def shuffle(s):
     """
     assert len(s) % 2 == 0, 'len(seq) must be even'
     "*** YOUR CODE HERE ***"
+    n = len(s)
+    half = n // 2
+    first = s[:half]
+    second = s[half:]
+    return [elem for i in range(half) for elem in (first[i], second[i])]
 
 
 def deep_map(f, s):
@@ -38,6 +43,12 @@ def deep_map(f, s):
     True
     """
     "*** YOUR CODE HERE ***"
+    for i in range(len(s)):
+        item = s[i]
+        if type(item) == list:
+            deep_map(f, item)
+        else:
+            s[i] = f(item)
 
 
 HW_SOURCE_FILE=__file__
@@ -47,11 +58,13 @@ def planet(mass):
     """Construct a planet of some mass."""
     assert mass > 0
     "*** YOUR CODE HERE ***"
+    return ['planet', mass]
 
 def mass(p):
     """Select the mass of a planet."""
     assert is_planet(p), 'must call mass on a planet'
     "*** YOUR CODE HERE ***"
+    return p[1]
 
 def is_planet(p):
     """Whether p is a planet."""
@@ -104,6 +117,31 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
+    # 情况1：是行星，直接平衡
+    if is_planet(m):
+        return True
+    
+    # 取出左右手臂
+    left_arm = left(m)
+    right_arm = right(m)
+
+    # 计算左臂扭矩
+    left_len = length(left_arm)
+    left_obj = end(left_arm)
+    left_torque = left_len * total_mass(left_obj)
+
+    # 计算右臂扭矩
+    right_len = length(right_arm)
+    right_obj = end(right_arm)
+    right_torque = right_len * total_mass(right_obj)
+
+    # 条件1：左右扭矩相等
+    torque_ok = left_torque == right_torque
+    # 条件2：左臂末端物体平衡 且 右臂末端物体平衡
+    sub_balanced = balanced(left_obj) and balanced(right_obj)
+
+    # 两个条件同时满足才返回True
+    return torque_ok and sub_balanced
 
 
 def berry_finder(t):
@@ -124,6 +162,16 @@ def berry_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
+    # 当前节点就是berry，直接找到
+    if label(t) == 'berry':
+        return True
+    # 遍历所有子分支
+    for b in branches(t):
+        # 任意子树找到berry，整体返回True
+        if berry_finder(b):
+            return True
+    # 全部找完都没有
+    return False
 
 
 HW_SOURCE_FILE=__file__
@@ -139,6 +187,12 @@ def max_path_sum(t):
     17
     """
     "*** YOUR CODE HERE ***"
+     # 叶子节点：无分支
+    if not branches(t):
+        return label(t)
+    # 取所有子树最大路径，加上当前节点值
+    child_max = max(max_path_sum(b) for b in branches(t))
+    return label(t) + child_max
 
 
 def mobile(left, right):
