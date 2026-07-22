@@ -198,6 +198,9 @@ def always_roll(n):
     assert n >= 0 and n <= 10
     # BEGIN PROBLEM 6
     "*** YOUR CODE HERE ***"
+    def strategy(player_score, opponent_score):
+        return n
+    return strategy
     # END PROBLEM 6
 
 
@@ -229,6 +232,16 @@ def is_always_roll(strategy, goal=GOAL):
     """
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+     # 先拿第一个组合 (0,0) 的结果作为基准
+    fixed_num = strategy(0, 0)
+    # 遍历全部玩家得分
+    for score in range(goal):
+        # 遍历全部对手得分
+        for opponent_score in range(goal):
+            current = strategy(score, opponent_score)
+            if current != fixed_num:
+                return False
+    return True
     # END PROBLEM 7
 
 
@@ -245,6 +258,12 @@ def make_averaged(original_function, times_called=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def averaged(*args):
+        total = 0
+        for _ in range(times_called):
+            total += original_function(*args)
+        return total / times_called
+    return averaged
     # END PROBLEM 8
 
 
@@ -258,6 +277,16 @@ def max_scoring_num_rolls(dice=six_sided, times_called=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    max_avg = -1
+    best = 1
+    avg_roll = make_averaged(roll_dice, times_called)
+    # 1 到 10
+    for n in range(1, 11):
+        average_score = avg_roll(n, dice)
+        if average_score > max_avg:
+            max_avg = average_score
+            best = n
+    return best
     # END PROBLEM 9
 
 
