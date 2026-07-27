@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     for nums, target, expected_nums, expected_len in test_cases:
         original = nums.copy()
-        result_len = yichu(nums, target)
+        result_len = haoren(nums, target)
         result_nums = nums[:result_len]
         
         passed = result_len == expected_len and sorted(result_nums) == sorted(expected_nums)
