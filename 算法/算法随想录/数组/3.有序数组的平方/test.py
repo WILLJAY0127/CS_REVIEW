@@ -9,24 +9,21 @@ def sortedSquares_brute(nums: List[int]) -> List[int]:
 
 
 def sortedSquares_two_pointers(nums: List[int]) -> List[int]:
-    n = len(nums)
-    result = [0] * n
-    k = n - 1
-    left, right = 0, n - 1
+    left = 0
+    right = len(nums) - 1
+    pos = len(nums) - 1
+    result = [0] * len(nums)
 
     while left <= right:
-        left_sq = nums[left] * nums[left]
-        right_sq = nums[right] * nums[right]
-
-        if left_sq < right_sq:
-            result[k] = right_sq
-            right -= 1
-        else:
-            result[k] = left_sq
+        l_sq = nums[left] * nums[left]
+        r_sq = nums[right] * nums[right]
+        if l_sq >= r_sq:
+            result[pos] = l_sq
             left += 1
-
-        k -= 1
-
+        else:
+            result[pos] = r_sq
+            right -= 1
+        pos -= 1
     return result
 
 
