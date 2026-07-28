@@ -12,7 +12,7 @@ def sortedSquares_two_pointers(nums: List[int]) -> List[int]:
     left = 0
     right = len(nums) - 1
     pos = len(nums) - 1
-    result = [0] * len(nums)
+    result = [float("inf")] * len(nums)
 
     while left <= right:
         l_sq = nums[left] * nums[left]
