@@ -15,9 +15,11 @@
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-context</artifactId>
-    <version>6.1.14</version>
+    <version>5.3.39</version>
 </dependency>
 ```
+
+> **Java 8 用户必看**：Spring 6.x 要求 Java 17+，Java 8 只能停在 **5.3.x**（5.3 是支持 Java 8 的最后一条线）。本文所有断点、方法名、三级缓存结构在 5.3.x 与 6.x 中一致，只是**行号不同**，别拿 6.x 的行号对照 5.3 的源码。版本号写 5.3.39 即可（5.3 的最终版）。
 
 然后在 IDEA 里对依赖 **Download Sources**（Maven 面板右上角图标，或点进任意 Spring 类后顶部出现的提示条）。不下载源码，跟进去看到的是反编译残影，行号对不上、变量名是 `var1` 这种，体验极差。
 
@@ -40,7 +42,8 @@ public class B {
 
 public class Main {
     public static void main(String[] args) {
-        var ctx = new AnnotationConfigApplicationContext("com.example.demo");
+        AnnotationConfigApplicationContext ctx =
+                new AnnotationConfigApplicationContext("com.example.demo");
         A a = ctx.getBean(A.class);
         System.out.println(a.b.a == a);   // true：环上所有人拿到的是同一个 A
     }
